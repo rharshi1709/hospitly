@@ -13,7 +13,7 @@ function Doctors() {
     useEffect(()=>{
         async function fetchCategory(){
             try{
-             const response =await fetch(`http://localhost:1000/api/category`)
+             const response =await fetch(`https://hospitlybackend.onrender.com/api/category`)
             const data =await  response.json()
             console.log(data.data)
             setCategoryData(data.data)
@@ -30,13 +30,13 @@ function Doctors() {
             
            try {
                 if (currentCategory==='all'){
-             const response =await fetch(`http://localhost:1000/api/doctors?name=${input}`)
+             const response =await fetch(`https://hospitlybackend.onrender.com/api/doctors?name=${input}`)
             const data =await  response.json()
             setDoctors(data.data)
             setLoading(false)
            }
            else{
-         const response =await fetch(`http://localhost:1000/api/category/${currentCategory}?name=${input}`)
+         const response =await fetch(`https://hospitlybackend.onrender.com/api/category/${currentCategory}?name=${input}`)
             const data =await  response.json()
             console.log(data.data)
             setDoctors(data.data)

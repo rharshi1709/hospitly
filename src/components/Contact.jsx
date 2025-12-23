@@ -15,7 +15,7 @@ function Contact() {
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify(contactDetails)
       }
-      const res= await fetch("http://localhost:1000/api/contact-us",options);
+      const res= await fetch("https://hospitlybackend.onrender.com/api/contact-us",options);
       const data= await res.json();
       console.log(data);
       if(res.ok){

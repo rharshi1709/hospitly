@@ -18,7 +18,7 @@ const [username, setUsername] = useState("");
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userDetails),
       }
-      const res = await fetch("http://localhost:1000/api/signup", options);
+      const res = await fetch("https://hospitlybackend.onrender.com/api/signup", options);
 
       const data = await res.json();
       console.log(data)
