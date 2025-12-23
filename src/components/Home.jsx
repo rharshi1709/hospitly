@@ -1,7 +1,7 @@
 import React from 'react'
 import ServicesCard from './ServicesCard'
 import DepartmentsCarousel from './DoctorCourosel'
-import AboutSection from './aboutSection'
+import AboutSection from './AboutSection'
 import Footer from './Footer'
 
 function Home() {
