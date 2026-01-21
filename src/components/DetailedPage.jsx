@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import MyCalendar from './calendar'
 import Footer from './Footer'
+import Navbar from './Navbar'
 
 function DetailedPage() {
   const [doctor, setDoctor] = useState(null)
@@ -24,7 +25,10 @@ function DetailedPage() {
   if (!doctor) return <p>Loading...</p>
 
   return (
-    <div className='mt-18 p-2 flex flex-col justify-center items-center'>
+ <>
+
+ <Navbar/>
+   <div className='mt-18 p-2 flex flex-col justify-center items-center'>
 <div className='bg-blue-50 flex flex-wrap lg:flex-nowrap items-center p-10 m-3 rounded-xl w-full shadow-md h-full'>
         <div className='flex flex-col justify-center '>
           <img className='w-60 h-60 mb-2 rounded-xl' src={doctor.photo}/>
@@ -52,6 +56,7 @@ function DetailedPage() {
       <Footer/>
    
     </div>
+ </> 
   )
 }
 

@@ -1,7 +1,7 @@
 
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import Navbar from './components/Navbar'
+
 import Home from './components/Home'
 import Contact from './components/Contact'
 import AboutUs from './components/AboutUs'
@@ -11,13 +11,14 @@ import NotFound from './components/NotFound'
 import Register from './components/Register'
 import Login from './components/Login'
 import ProtectedRoute from './components/ProtectedRoute'
-
+import Profile from './components/Profile'
+import Appointment from './components/Appointment'
 function App() {
  
 
   return (
     <>
-   <Navbar/>
+  
    <Routes>
     <Route path='/' element={<ProtectedRoute><Home/></ProtectedRoute>}/>
        <Route path='/contact' element={<ProtectedRoute><Contact/></ProtectedRoute>}/>
@@ -27,6 +28,8 @@ function App() {
          <Route path='/doctors' element={<ProtectedRoute><Doctors/></ProtectedRoute>}/>
           <Route path='*' element={<NotFound/>}/>
             <Route path='/doctor/:id' element={<ProtectedRoute><DetailedPage/></ProtectedRoute>}/>
+            <Route path='/profile' element={<ProtectedRoute><Profile/></ProtectedRoute>}/>
+            <Route path='/appointments' element={<ProtectedRoute><Appointment/></ProtectedRoute>}/>
    </Routes>
     </>
   )

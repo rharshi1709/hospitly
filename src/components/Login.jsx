@@ -18,6 +18,8 @@ const Login = () => {
 
   const onSuccess = (token) => {
     Cookies.set("jwt_token", token, { expires: 30 });
+    Cookies.set("user_email", email, { expires: 30 });
+    alert("✅ Login Successful");
     navigate("/", { replace: true });
   };
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import Navbar from './Navbar'
 
 function Contact() {
   const [name,setName]=useState('')
@@ -34,6 +35,8 @@ function Contact() {
     }
   }
   return (
+     <>
+     <Navbar/>
      <div className="max-w-4xl pt-2 shadow-2xl  mt-17 mx-auto my-10 p-10 ">
       <h2 className="text-4xl font-bold text-center mb-8 text-blue-950">
         Contact Us
@@ -107,6 +110,8 @@ function Contact() {
         </div>
       </div>
     </div>
+     </>
+
   )
 }
 

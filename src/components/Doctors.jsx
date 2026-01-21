@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { BeatLoader } from 'react-spinners'
 import { Link } from 'react-router'
+import Navbar from './Navbar'
 
 function Doctors() {
     const [categoryData , setCategoryData]=useState([])
@@ -51,8 +52,10 @@ function Doctors() {
     },[currentCategory, input])
 
   return (
-    <div className='mt-20 p-3'>
-      
+    <>
+     <Navbar/>
+       <div className='mt-20 p-3'>
+     
       <h1 className='text-center font-bold text-4xl mb-2'>Meet Our Doctors</h1>
   <h1 className='text-center font-semibold text-sm mb-5'>“Where healing meets excellence.”</h1>
       <div className="flex flex-col  md:flex-row md:justify-between md:p-3">
@@ -101,6 +104,8 @@ function Doctors() {
 
       </div>
     </div>
+     </>
+  
   )
 }
 

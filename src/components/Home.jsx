@@ -3,10 +3,12 @@ import ServicesCard from './ServicesCard'
 import DepartmentsCarousel from './DoctorCourosel'
 import AboutSection from './AboutSection'
 import Footer from './Footer'
+import Navbar from './Navbar'
 
 function Home() {
   return (
     <>
+    <Navbar/>
     <div className="flex flex-col items-start pl-4 justify-center md:mt-15 min-h-screen min-w-full bg-[url('https://t3.ftcdn.net/jpg/14/73/30/96/360_F_1473309619_TbeIX0iphz6MuZ2kMANQI5CCxWWXo7ap.jpg')] 
             bg-cover bg-center h-[500px] overflow-hidden">
   {/* Dark overlay */}

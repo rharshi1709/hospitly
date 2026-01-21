@@ -2,6 +2,7 @@ import React from 'react'
 import { FaUserMd, FaHeartbeat, FaLaptopMedical } from "react-icons/fa";
 import Footer from './Footer';
 import { FaMapMarkerAlt } from "react-icons/fa";
+import Navbar from './Navbar';
 
 function AboutUs() {
     
@@ -28,6 +29,8 @@ function AboutUs() {
     },
   ];
   return (
+    <>
+    <Navbar/>
     <div className='mt-15 overflow-x-hidden'>
         <img className='min-w-screen h-100' src='https://amcarehospital.com/wp-content/uploads/2023/12/Are-Hospitals-Making-as-Much-Money-as-You-Think1.jpg' />
         <div className='p-3'>
@@ -126,6 +129,7 @@ Vision, Mission & Core Values</h1>
     </div>
     <Footer/>
      </div>
+    </>
   )
 }
 

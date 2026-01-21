@@ -10,12 +10,7 @@ function Navbar() {
       <div className="md:hidden">
         <div className="bg-white z-50 justify-between shadow-xl items-center flex w-full h-16 fixed top-0 px-4">
           <div className="flex items-center">
-            <img
-              className="w-10 h-10"
-              src="https://media.istockphoto.com/id/1524913019/vector/hospital-building-vector-illustration-in-flat-style-design.jpg?s=612x612&w=0&k=20&c=WVl257GwZBvckU_e5SNu0CCG3gL9EbCMZPwINLcxdj4="
-              alt="logo"
-            />
-            <p className="font-bold italic ml-1">h̼o̼s̼p̼i̼t̼l̼y̼</p>
+            <a href="/" className="font-bold italic ml-1">Ho̼s̼p̼i̼t̼l̼y̼</a>
           </div>
 
           <svg
@@ -42,7 +37,7 @@ function Navbar() {
             <Link to="/appointments" className="m-2 text-gray-900 cursor-pointer">MyAppointments</Link>
             <Link to="/contact" className="m-2 text-gray-900 cursor-pointer">ContactUs</Link>
             <Link to="/about" className="m-2 text-gray-900 cursor-pointer">AboutUs</Link>
-            <Link to="/profile" className="m-2 text-gray-900 cursor-pointer">Profile</Link>
+            <Link to="/profile" className="m-2 text-gray-900 cursor-pointer">👤</Link>
           </div>
         ) : null}
       </div>
@@ -51,12 +46,8 @@ function Navbar() {
       <div className="md:flex hidden">
         <div className="bg-white z-50 justify-between shadow-xl items-center flex w-full h-16 fixed top-0 px-6">
           <div className="flex items-center">
-            <img
-              className="w-10 h-10"
-              src="https://media.istockphoto.com/id/1524913019/vector/hospital-building-vector-illustration-in-flat-style-design.jpg?s=612x612&w=0&k=20&c=WVl257GwZBvckU_e5SNu0CCG3gL9EbCMZPwINLcxdj4="
-              alt="logo"
-            />
-            <p className="font-bold italic ml-1">h̼o̼s̼p̼i̼t̼l̼y̼</p>
+            
+            <a href="/" className="font-bold italic ml-1">Ho̼s̼p̼i̼t̼l̼y̼</a>
           </div>
 
           <div>
@@ -65,7 +56,7 @@ function Navbar() {
             <Link to="/appointments" className="m-2 text-gray-900 cursor-pointer">MyAppointments</Link>
             <Link to="/contact" className="m-2 text-gray-900 cursor-pointer">ContactUs</Link>
             <Link to="/about" className="m-2 text-gray-900 cursor-pointer">AboutUs</Link>
-            <Link to="/profile" className="m-2 text-gray-900 cursor-pointer">Profile</Link>
+            <Link to="/profile" className="m-2 text-gray-900 cursor-pointer">👤</Link>
           </div>
         </div>
       </div>
