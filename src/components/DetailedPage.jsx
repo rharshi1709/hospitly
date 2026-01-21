@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import MyCalendar from './calendar'
 import Footer from './Footer'
+import { BeatLoader } from 'react-spinners'
 import Navbar from './Navbar'
 
 function DetailedPage() {
@@ -22,7 +23,10 @@ function DetailedPage() {
     if (id) fetchDoctor()
   }, [id])
 // console.log(doctor.data.specialities)
-  if (!doctor) return <p>Loading...</p>
+  if (!doctor) return <div className="flex justify-center items-center h-screen">
+  <BeatLoader color='' />
+</div>
+
 
   return (
  <>

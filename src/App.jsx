@@ -29,7 +29,7 @@ function App() {
           <Route path='*' element={<NotFound/>}/>
             <Route path='/doctor/:id' element={<ProtectedRoute><DetailedPage/></ProtectedRoute>}/>
             <Route path='/profile' element={<ProtectedRoute><Profile/></ProtectedRoute>}/>
-            <Route path='/appointments' element={<ProtectedRoute><Appointment/></ProtectedRoute>}/>
+            <Route path='/appointment' element={<ProtectedRoute><Appointment/></ProtectedRoute>}/>
    </Routes>
     </>
   )

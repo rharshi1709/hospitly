@@ -1,6 +1,8 @@
 import React from "react";
 import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import Footer from "./Footer";
 
 function Appointment() {
   const [categoryData, setCategoryData] = useState([]);
@@ -13,6 +15,44 @@ function Appointment() {
   const [phone, setPhone] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const email = Cookies.get("user_email");
+      const userData = {
+        name,
+        phone,
+        category: department,
+        doctor,
+        date,
+        time,
+      };
+
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...userData, email }),
+      };
+
+      const response = await fetch(
+        "https://hospitlybackend.onrender.com/api/appointment",
+        options
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.message);
+      } else {
+        alert(data.message);
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   // fetch categories
   useEffect(() => {
@@ -39,7 +79,7 @@ function Appointment() {
         );
         const data = await response.json();
         setAllDoctors(data.data);
-        setDoctors(data.data); // show all initially
+        setDoctors(data.data);
       } catch (err) {
         console.log(err.message);
       }
@@ -50,7 +90,7 @@ function Appointment() {
   // filter doctors when department changes
   useEffect(() => {
     if (!department) {
-      setDoctors(allDoctors); // show all if no department selected
+      setDoctors(allDoctors);
       return;
     }
 
@@ -63,119 +103,112 @@ function Appointment() {
   return (
     <>
       <Navbar />
-      <div className="mt-20">
-        <form className="max-w-4xl flex flex-col justify-center mx-auto my-10 p-6 bg-white rounded-lg shadow-md">
-          <h2 className="text-3xl text-center font-bold mb-2 text-blue-950">
-            Book an Appointment
-          </h2>
-          <p className="text-center">Fill out the form below to book an appointment with a doctor.</p>
+      <div className="min-h-screen mt-10 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 py-8">
+          <form
+            onSubmit={onSubmit}
+            className="bg-white rounded-2xl shadow-lg p-6 md:p-10"
+          >
+            <h2 className="text-3xl md:text-4xl text-center font-bold mb-3 text-blue-900">
+              Book an Appointment
+            </h2>
+            <p className="text-center text-gray-500 mb-6">
+              Fill out the form below to book an appointment with a doctor.
+            </p>
 
-       <div className="mt-3 shadow-lg rounded-2xl p-4 ">
-           {/* Name */}
-          <div>
-            <label htmlFor="name" className="block font-bold mt-4">
-              Name:
-              <input
-                id="name"
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-              />
-            </label>
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Name */}
+              <div>
+                <label className="block font-bold mb-2">Name</label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-200"
+                />
+              </div>
 
-          {/* Phone */}
-          <div>
-            <label htmlFor="phone" className="block font-bold mt-4">
-              Phone No:
-              <input
-                id="phone"
-                type="number"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-              />
-            </label>
-          </div>
+              {/* Phone */}
+              <div>
+                <label className="block font-bold mb-2">Phone No</label>
+                <input
+                  type="number"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-200"
+                />
+              </div>
 
-         <div className="flex mt-3 mb-3">
-           {/* Department */}
-          <div className="mr-5">
-            <label htmlFor="department" className="block font-bold mt-4">
-              Department:
-              <select
-                className="bg-blue-50 shadow-lg p-2 ml-3 rounded-xl"
-                id="department"
-                value={department}
-                onChange={(e) => setDepartment(e.target.value)}
+              {/* Department */}
+              <div>
+                <label className="block font-bold mb-2">Department</label>
+                <select
+                  value={department}
+                  onChange={(e) => setDepartment(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-xl bg-blue-50"
+                >
+                  <option value="">Select Department</option>
+                  {categoryData.map((cat) => (
+                    <option key={cat} value={cat}>
+                      {cat}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Doctor */}
+              <div>
+                <label className="block font-bold mb-2">Doctor</label>
+                <select
+                  value={doctor}
+                  onChange={(e) => setDoctor(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-xl bg-blue-50"
+                >
+                  <option value="">Select Doctor</option>
+                  {doctors.map((doc) => (
+                    <option key={doc._id} value={doc.name}>
+                      {doc.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Date */}
+              <div>
+                <label className="block font-bold mb-2">Date</label>
+                <input
+                  type="date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                    min={new Date().toISOString().split("T")[0]}
+                  className="w-full p-3 border border-gray-300 rounded-xl"
+                />
+              </div>
+
+              {/* Time */}
+              <div>
+                <label className="block font-bold mb-2">Time</label>
+                <input
+                  type="time"
+                  value={time}
+                  onChange={(e) => setTime(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-xl"
+                />
+              </div>
+            </div>
+
+            <div className="flex justify-center mt-8">
+              <button
+                type="submit"
+                className="bg-blue-600 text-white px-8 py-3 rounded-xl hover:bg-blue-700 transition"
               >
-                <option value="">Select Department</option>
-                {categoryData.map((cat) => (
-                  <option key={cat} value={cat}>
-                    {cat}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-
-          {/* Doctor */}
-          <div>
-            <label htmlFor="doctor" className="block font-bold mt-4">
-              Doctor:
-              <select
-                className="bg-blue-50 shadow-lg p-2 ml-3 rounded-xl"
-                id="doctor"
-                value={doctor}
-                onChange={(e) => setDoctor(e.target.value)}
-              >
-                <option value="">Select Doctor</option>
-                {doctors.map((doc) => (
-                  <option key={doc._id} value={doc._id}>
-                    {doc.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-         </div>
-
-          {/* Date */}
-          <div>
-            <label htmlFor="date" className="block font-bold mt-4">
-              Date:
-              <input
-                id="date"
-                type="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-              />
-            </label>
-          </div>
-
-          {/* Time */}
-          <div>
-            <label htmlFor="time" className="block font-bold mt-4">
-              Time:
-              <input
-                id="time"
-                type="time"
-                value={time}
-                onChange={(e) => setTime(e.target.value)}
-                className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-              />
-            </label>
-          </div>
-          <div className="flex justify-center">
-            <button  type="submit" className="mt-6 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
-              Submit
-            </button>
-          </div>
-       </div>
-        </form>
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
+      <Footer />
     </>
   );
 }
