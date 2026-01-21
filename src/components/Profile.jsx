@@ -42,7 +42,7 @@ function Profile() {
 
   useEffect(() => {
     fetchUserData();
-  }, []);
+  });
 
   const upcomingAppointments = appointment.filter(
     (app) => new Date(app.date) >= new Date()
