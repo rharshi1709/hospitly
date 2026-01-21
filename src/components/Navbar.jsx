@@ -34,9 +34,9 @@ function Navbar() {
           <div className="flex bg-amber-50 items-center text-lg mt-16 flex-col justify-center shadow-md">
             <Link to="/" className="m-2 text-gray-900 cursor-pointer">Home</Link>
             <Link to="/doctors" className="m-2 text-gray-900 cursor-pointer">Doctors</Link>
-            <Link to="/appointments" className="m-2 text-gray-900 cursor-pointer">MyAppointments</Link>
-            <Link to="/contact" className="m-2 text-gray-900 cursor-pointer">ContactUs</Link>
-            <Link to="/about" className="m-2 text-gray-900 cursor-pointer">AboutUs</Link>
+            <Link to="/appointments" className="m-2 text-gray-900 cursor-pointer">BookAppointment</Link>
+            <Link to="/contact" className="m-2 text-gray-900 cursor-pointer">Contact</Link>
+            <Link to="/about" className="m-2 text-gray-900 cursor-pointer">About</Link>
             <Link to="/profile" className="m-2 text-gray-900 cursor-pointer">👤</Link>
           </div>
         ) : null}
@@ -53,9 +53,9 @@ function Navbar() {
           <div>
             <Link to="/" className="m-2 text-gray-900 cursor-pointer">Home</Link>
             <Link to="/doctors" className="m-2 text-gray-900 cursor-pointer">Doctors</Link>
-            <Link to="/appointments" className="m-2 text-gray-900 cursor-pointer">MyAppointments</Link>
-            <Link to="/contact" className="m-2 text-gray-900 cursor-pointer">ContactUs</Link>
-            <Link to="/about" className="m-2 text-gray-900 cursor-pointer">AboutUs</Link>
+            <Link to="/appointments" className="m-2 text-gray-900 cursor-pointer">BookAppointment</Link>
+            <Link to="/contact" className="m-2 text-gray-900 cursor-pointer">Contact</Link>
+            <Link to="/about" className="m-2 text-gray-900 cursor-pointer">About</Link>
             <Link to="/profile" className="m-2 text-gray-900 cursor-pointer">👤</Link>
           </div>
         </div>

@@ -59,7 +59,8 @@ function Doctors() {
       <h1 className='text-center font-bold text-4xl mb-2'>Meet Our Doctors</h1>
   <h1 className='text-center font-semibold text-sm mb-5'>“Where healing meets excellence.”</h1>
       <div className="flex flex-col  md:flex-row md:justify-between md:p-3">
-<div className='flex justify-center m-3 items-center'> <p className='font-semibold border-0'>Select a category :</p><select className='bg-blue-100 shadow-lg p-2 ml-3 rounded-xl' onChange={(e)=>{
+<div className='flex justify-center m-3 items-center'> <p className='font-semibold border-0'>Select a category :</p>
+<select className='bg-blue-100 shadow-lg p-2 ml-3 rounded-xl' onChange={(e)=>{
   console.log(e.target.value)
   setCurrentCategory(e.target.value)
  }} id="department" name="department">
