@@ -42,7 +42,7 @@ const [username, setUsername] = useState("");
   
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4 mt-7">
+    <div className="min-h-screen flex items-center justify-center px-4 mt-7">
       <form
         onSubmit={handleSubmit}
         className="bg-white w-full  max-w-md p-4 px-10 rounded-3xl shadow-2xl"

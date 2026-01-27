@@ -96,9 +96,9 @@ function Doctors() {
         {/* Doctor Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center items-center mt-10">
   {loading ? (
-    <div className="flex justify-center items-center h-40 w-full">
-      <BeatLoader color="#3B82F6" />
-    </div>
+   <div className="flex justify-center items-center w-screen">
+  <BeatLoader color="#3B82F6" size={15} />
+</div>
   ) : (
     doctors.map((doc) => (
       <div key={doc._id} className="m-2">

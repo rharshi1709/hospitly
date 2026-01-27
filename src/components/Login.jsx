@@ -46,56 +46,70 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white w-110 p-8 rounded-2xl shadow-md"
-      >
-        <h2 className="text-2xl font-bold mb-6 text-center">Sign In</h2>
+  <div className="flex min-h-screen items-center justify-center bg-gray-100 px-4">
+    <form
+      onSubmit={handleSubmit}
+      className="w-full max-w-md bg-white p-6 sm:p-8 rounded-2xl shadow-md"
+    >
+      <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">
+        Sign In
+      </h2>
 
-        <div>
-          <label htmlFor="email" className="block font-bold  mb-2">Email</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-2 mb-4 border rounded"
-            required
-          />
-        </div>
+      <div className="mb-4">
+        <label htmlFor="email" className="block font-semibold mb-2">
+          Email
+        </label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+          required
+        />
+      </div>
 
-        <div>
-          <label htmlFor="password" className="block font-bold  mb-2">Password</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-2 mb-4 border rounded"
-            required
-          />
-        </div>
+      <div className="mb-4">
+        <label htmlFor="password" className="block font-semibold mb-2">
+          Password
+        </label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+          required
+        />
+      </div>
 
-        <div className="flex flex-col justify-between items-center">
-          <p>If you don't have an account, please <a href="/signup" className="text-blue-500 hover:underline">Sign Up</a></p>
-          <button
+      <div className="flex flex-col items-center text-center">
+        <p className="text-sm sm:text-base">
+          If you don't have an account,{" "}
+          <a href="/signup" className="text-blue-500 hover:underline">
+            Sign Up
+          </a>
+        </p>
+
+        <button
           type="submit"
-          className="w-40 mt-4 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
+          className="w-full sm:w-40 mt-4 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
         >
           Sign In
         </button>
-         
-        </div>
+      </div>
 
-        {message && (
-          <p className="mt-4 text-center text-md font-semibold text-red-600">{message}</p>
-        )}
-      </form>
-    </div>
-  );
+      {message && (
+        <p className="mt-4 text-center font-semibold text-red-600">
+          {message}
+        </p>
+      )}
+    </form>
+  </div>
+);
+
 };
 
 export default Login;
