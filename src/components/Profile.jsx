@@ -11,7 +11,7 @@ function Profile() {
     Cookies.remove("jwt_token");
     Cookies.remove("user_email");
     alert("✅ Logout Successful");
-    window.location.href = "/signin";
+    window.location.href = "/";
   };
 
   const email = Cookies.get("user_email");

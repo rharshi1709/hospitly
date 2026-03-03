@@ -13,6 +13,10 @@ import Login from './components/Login'
 import ProtectedRoute from './components/ProtectedRoute'
 import Profile from './components/Profile'
 import Appointment from './components/Appointment'
+import AdminIn from './components/AdminIn'
+import Hospitals from './components/Hospitals'
+import AdminDashboard from './components/AdminDashboard'
+import HospitalDetails from './components/HospitalDetails'
 function App() {
  
 
@@ -20,16 +24,20 @@ function App() {
     <>
   
    <Routes>
-    <Route path='/' element={<ProtectedRoute><Home/></ProtectedRoute>}/>
-       <Route path='/contact' element={<ProtectedRoute><Contact/></ProtectedRoute>}/>
-       <Route path='/about' element={<ProtectedRoute><AboutUs/></ProtectedRoute>}/>
+    <Route path='/' element={<Home/>}/>
+       <Route path='/contact' element={<Contact/>}/>
+       <Route path='/about' element={<AboutUs/>}/>
        <Route path='/signup' element={<Register/>}/>
        <Route path='/signin' element={<Login/>}/>
-         <Route path='/doctors' element={<ProtectedRoute><Doctors/></ProtectedRoute>}/>
+         {/* <Route path='/doctors' element={<ProtectedRoute><Doctors/></ProtectedRoute>}/> */}
           <Route path='*' element={<NotFound/>}/>
-            <Route path='/doctor/:id' element={<ProtectedRoute><DetailedPage/></ProtectedRoute>}/>
+            <Route path='/hospitals/:id/doctor/:name' element={<DetailedPage/>}/>
             <Route path='/profile' element={<ProtectedRoute><Profile/></ProtectedRoute>}/>
             <Route path='/appointment' element={<ProtectedRoute><Appointment/></ProtectedRoute>}/>
+            <Route path='/admin' element={<AdminIn/>}/>
+            <Route path="/hospitals" element={<Hospitals/>}/>
+            <Route path="/hospitals/:id" element={<HospitalDetails/>}/>
+            <Route path="/admin-dashboard" element={<AdminDashboard/>}/>
    </Routes>
     </>
   )

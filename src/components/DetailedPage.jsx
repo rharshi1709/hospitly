@@ -7,60 +7,134 @@ import Navbar from './Navbar'
 
 function DetailedPage() {
   const [doctor, setDoctor] = useState(null)
-  const { id } = useParams()
+  const { id, name } = useParams()
 
   useEffect(() => {
     async function fetchDoctor() {
       try {
-        const response = await fetch(`https://hospitlybackend.onrender.com/api/doctor/${id}`)
+        const response = await fetch(`http://localhost:1000/api/hospitals/${id}/doctor/${name}`)
         const data = await response.json()
-        console.log("Fetched doctor data:", data)
-        setDoctor(data.data)
+        setDoctor(data)
       } catch (err) {
         console.error("Error fetching doctor:", err)
       }
     }
     if (id) fetchDoctor()
   }, [id])
-// console.log(doctor.data.specialities)
-  if (!doctor) return <div className="flex justify-center items-center h-screen">
-  <BeatLoader color='' />
-</div>
 
+  if (!doctor)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <BeatLoader />
+      </div>
+    )
 
   return (
- <>
+    <>
+      <Navbar />
 
- <Navbar/>
-   <div className='mt-18 p-2 flex flex-col justify-center items-center'>
-<div className='bg-blue-50 flex flex-wrap lg:flex-nowrap items-center p-10 m-3 rounded-xl w-full shadow-md h-full'>
-        <div className='flex flex-col justify-center '>
-          <img className='w-60 h-60 mb-2 rounded-xl' src={doctor.photo}/>
-             <h1 className='text-2xl font-bold m-1'>{doctor.name}</h1>
-         <h1 className='text-md font-semibold m-1'>Sr. Consultant,<span className='ml-1'>{doctor.category}</span></h1>
-        <p className='border border-black font-bold mt-3 text-lg p-2 rounded-xl  text-blue-500'> Rs. 800</p>
-        </div>
-        <div className='flex flex-col justify-start mt-6 lg:ml-15 align-text-top'>
-          <p className='text-lg'><span className='font-bold text-lg'>Description: </span>{doctor.description}</p>
-          <p className='text-lg mt-3'><span className='font-bold text-lg'>Specialities: </span></p>
-          <ul className='mb-4'>
-            {doctor.specialities.map((spec, index) => (
-              <li key={index} className='text-md list-none border rounded-xl w-60 bg-gray-200 mt-5 p-2 ml-5 hover:bg-blue-800 hover:text-white'>{spec}</li>
-            ))}
-          </ul>
-          <p><span className='font-bold '>Experience:</span></p>
+      <div className="min-h-screen bg-gradient-to-br from-blue-100 via-white to-blue-50 py-20 px-6 flex justify-center">
 
-           <p className='text-lg border p-2 mt-3 ml-10 w-50 rounded-xl'>{doctor.experience}</p>
-        
+        <div className="w-full max-w-7xl">
+
+          {/* Doctor Hero Section */}
+          <div className="bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl p-14 flex flex-col lg:flex-row gap-16 items-center relative overflow-hidden min-h-[480px]">
+
+            {/* Background Glow */}
+            <div className="absolute -top-32 -right-32 w-96 h-96 bg-blue-300 rounded-full opacity-20 blur-3xl"></div>
+
+            {/* Doctor Image */}
+            <div className="relative z-10 flex-shrink-0">
+              <img
+                src={doctor.photo}
+                alt={doctor.name}
+                className="w-72 h-72 object-cover rounded-3xl shadow-2xl border-4 border-white"
+              />
+            </div>
+
+            {/* Doctor Details */}
+            <div className="flex-1 relative z-10">
+
+              <h1 className="text-5xl font-bold text-gray-800">
+                {doctor.name}
+              </h1>
+
+              <p className="text-blue-600 text-xl font-semibold mt-3">
+                {doctor.designation}
+              </p>
+
+              <p className="text-gray-500 mt-2 text-lg">
+                {doctor.qualification}
+              </p>
+
+              {/* Specialities */}
+              <div className="mt-6 flex flex-wrap gap-4">
+                {doctor.specialities.map((spec, index) => (
+                  <span
+                    key={index}
+                    className="bg-blue-100 text-blue-700 px-5 py-2 rounded-full text-sm font-semibold shadow-sm"
+                  >
+                    {spec}
+                  </span>
+                ))}
+              </div>
+
+              <p className="mt-8 text-gray-700 leading-relaxed text-lg max-w-3xl">
+                {doctor.description}
+              </p>
+
+              {/* Info Row */}
+              <div className="mt-10 flex gap-16">
+
+                <div>
+                  <p className="text-gray-500 text-sm">Experience</p>
+                  <p className="font-semibold text-2xl mt-1">
+                    {doctor.experience}
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-gray-500 text-sm">Consultation Fee</p>
+                  <p className="font-bold text-3xl text-blue-700 mt-1">
+                    ₹ {doctor.fees}
+                  </p>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          {/* Booking Section */}
+          <div className="mt-16 bg-white rounded-3xl shadow-2xl p-14">
+
+            <h2 className="text-3xl font-bold text-gray-800 mb-10 text-center">
+              Book Appointment
+            </h2>
+
+            <div className="flex flex-col lg:flex-row justify-center items-start gap-16">
+
+              {/* Calendar */}
+              <div className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl shadow-inner">
+                <MyCalendar />
+              </div>
+
+              {/* Confirm Section
+              <div className="flex flex-col items-center justify-center">
+                <button className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-12 py-5 rounded-2xl text-xl font-semibold shadow-xl hover:scale-105 transition-all duration-300">
+                  Confirm Appointment
+                </button>
+              </div> */}
+
+            </div>
+
+          </div>
+
         </div>
-        <div className='items-center lg:ml-15 mt-10'>
-          <MyCalendar/>
-        </div>
-       </div>
-      <Footer/>
-   
-    </div>
- </> 
+      </div>
+
+      <Footer />
+    </>
   )
 }
 

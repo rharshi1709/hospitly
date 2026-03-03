@@ -99,6 +99,11 @@ function Doctors() {
    <div className="flex justify-center items-center w-screen">
   <BeatLoader color="#3B82F6" size={15} />
 </div>
+  ) : null}
+  {!loading && doctors.length === 0 ? (
+    <p className="text-center col-span-full text-gray-500">
+      No doctors found.
+    </p>
   ) : (
     doctors.map((doc) => (
       <div key={doc._id} className="m-2">
@@ -134,6 +139,7 @@ function Doctors() {
       </div>
     ))
   )}
+  
 </div>
 
 

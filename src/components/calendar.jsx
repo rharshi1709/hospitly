@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import { Link } from "react-router";
 
 function MyCalendar() {
   const [date, setDate] = useState(new Date());
@@ -8,6 +9,10 @@ function MyCalendar() {
 
   const day = date.getDate();
   const isEvenDate = day % 2 === 0;
+  const isSunday = date.getDay() === 0;
+
+  // Available only if EVEN date and NOT Sunday
+  const isAvailable = isEvenDate && !isSunday;
 
   const timeSlots = [
     "09:00 AM",
@@ -18,66 +23,81 @@ function MyCalendar() {
   ];
 
   return (
-    <div className="w-full rounded-lg border-0">
-      <Calendar
-        onChange={(d) => {
-          setDate(d);
-          setSelectedSlot(null);
-        }}
-        value={date}
-        minDate={new Date()}
-      />
+    <div className="w-full max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl p-10">
 
-      {/* EVEN DATE → SHOW SLOTS */}
-      {isEvenDate ? (
-        <div className="mt-3">
-          <h3 className="text-sm font-semibold mb-2 text-gray-800">
+      <div className="flex flex-col lg:flex-row gap-16">
+
+        {/* LEFT - Calendar */}
+        <div className="lg:w-1/2 w-full">
+          <Calendar
+            onChange={(d) => {
+              setDate(d);
+              setSelectedSlot(null);
+            }}
+            value={date}
+            minDate={new Date()}
+            tileDisabled={({ date }) => date.getDay() === 0}
+            tileClassName={({ date }) =>
+              date.getDay() === 0 ? "text-red-400 font-semibold" : null
+            }
+            className="w-full rounded-2xl border-0 shadow-lg p-6 text-lg"
+          />
+        </div>
+
+        {/* RIGHT - Slots */}
+        <div className="lg:w-1/2 w-full flex flex-col">
+
+          <h3 className="text-2xl font-semibold mb-6 text-gray-800">
             Available Slots
           </h3>
 
-          <div className="flex flex-wrap gap-1.5">
-            {timeSlots.map((slot) => (
-              <button
-                key={slot}
-                onClick={() => setSelectedSlot(slot)}
-                className={`px-2 py-1 rounded text-xs font-medium border transition
+          {isAvailable ? (
+            <>
+              <div className="grid grid-cols-3 gap-4">
+                {timeSlots.map((slot) => (
+                  <button
+                    key={slot}
+                    onClick={() => setSelectedSlot(slot)}
+                    className={`py-4 rounded-2xl text-base font-medium border transition-all duration-300 shadow-sm
+                      ${
+                        selectedSlot === slot
+                          ? "bg-blue-600 text-white border-blue-600 scale-105 shadow-lg"
+                          : "bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-600 hover:text-white"
+                      }`}
+                  >
+                    {slot}
+                  </button>
+                ))}
+              </div>
+
+              <Link to="/appointment"
+                disabled={!selectedSlot}
+                className={`mt-8 px-2 py-4 rounded-2xl text-lg font-semibold transition-all duration-300
                   ${
-                    selectedSlot === slot
-                      ? "bg-green-600 text-white border-green-600"
-                      : "bg-green-100 text-green-700 border-green-300 hover:bg-green-200"
+                    selectedSlot
+                      ? "bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-xl hover:scale-105"
+                      : "bg-gray-200 text-gray-400 cursor-not-allowed"
                   }`}
               >
-                {slot}
-              </button>
-            ))}
-          </div>
+                Confirm Appointment
+              </Link>
 
-          {/* Book Button */}
-          <div className="flex items-center justify-center mt-3">
-            <a href="/appointment"
-            disabled={!selectedSlot}
-            className={`mt-3 w-full text-center px-2 text-xs font-semibold py-1.5 rounded border transition
-              ${
-                selectedSlot
-                  ? "bg-red-500 text-white border-red-500 hover:bg-red-600"
-                  : "bg-gray-200 text-gray-500 border-gray-200 cursor-not-allowed"
-              }`}
-          >
-            Book an Appointment
-          </a>
-          </div>
-
-          {selectedSlot && (
-            <p className="mt-2 text-xs text-green-700">
-              Selected: {selectedSlot}
-            </p>
+              {selectedSlot && (
+                <p className="mt-4 text-sm text-green-600 font-medium">
+                  ✔ Selected: {selectedSlot}
+                </p>
+              )}
+            </>
+          ) : (
+            <div className="bg-red-50 border border-red-200 rounded-2xl p-8 text-red-500 font-medium text-lg">
+              {isSunday
+                ? "Doctor is not available on Sundays"
+                : "No slots available for the selected date"}
+            </div>
           )}
+
         </div>
-      ) : (
-        <p className="mt-3 text-xs text-red-500 font-semibold">
-          ❌ No slots available for the selected date
-        </p>
-      )}
+      </div>
     </div>
   );
 }
