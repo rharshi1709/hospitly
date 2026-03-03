@@ -9,10 +9,12 @@ function Navbar() {
     <>
       {/* MOBILE NAV */}
       <div className="md:hidden">
-        <div className="bg-white z-50 justify-between shadow-xl items-center flex w-full h-16 fixed top-0 px-4">
-          <div className="flex items-center">
-            <a href="/" className="font-bold italic ml-1">Ho̼s̼p̼i̼t̼l̼y̼</a>
-          </div>
+        <div className="fixed top-0 w-full h-16 flex justify-between items-center px-4 
+                        bg-white/70 backdrop-blur-md shadow-sm z-50">
+
+          <Link to="/" className="font-bold italic text-lg tracking-wide">
+            Hospitly
+          </Link>
 
           <svg
             onClick={() => setbtn(!btn)}
@@ -21,7 +23,7 @@ function Navbar() {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="w-6 h-6 mr-2 cursor-pointer"
+            className="w-6 h-6 cursor-pointer"
           >
             <path
               strokeLinecap="round"
@@ -32,42 +34,64 @@ function Navbar() {
         </div>
 
         {btn && (
-          <div className="flex bg-amber-50 items-center text-lg mt-16 flex-col justify-center shadow-md">
-            <Link to="/" className="m-2">Home</Link>
-            <Link to="/hospitals" className="m-2">Hospitals</Link>
-             {Cookies.get("jwt_token") ?(<Link to="/appointment" className="m-2">BookAppointment</Link>):null }
-            <Link to="/contact" className="m-2">Contact</Link>
-            <Link to="/about" className="m-2">About</Link>
+          <div className="mt-16 flex flex-col items-center bg-white shadow-md py-4 space-y-3">
+            <Link to="/" className="hover:text-blue-600 transition">Home</Link>
+            <Link to="/hospitals" className="hover:text-blue-600 transition">Hospitals</Link>
+
+            {Cookies.get("jwt_token") && (
+              <Link to="/appointment" className="hover:text-blue-600 transition">
+                Book Appointment
+              </Link>
+            )}
+
+            <Link to="/contact" className="hover:text-blue-600 transition">Contact</Link>
+            <Link to="/about" className="hover:text-blue-600 transition">About</Link>
 
             {Cookies.get("jwt_token") ? (
-              <Link to="/profile" className="m-2">👤</Link>
+              <Link to="/profile" className="text-xl">👤</Link>
             ) : (
-              <Link to="/signin" className="m-2">Login</Link>
+              <Link
+                to="/signin"
+                className="bg-blue-600 text-white px-4 py-1 rounded-full hover:bg-blue-700 transition"
+              >
+                Login
+              </Link>
             )}
           </div>
         )}
       </div>
 
       {/* DESKTOP NAV */}
-      <div className="md:flex hidden">
-        <div className="bg-white z-50 justify-between shadow-xl items-center flex w-full h-16 fixed top-0 px-6">
-          <div className="flex items-center">
-            <a href="/" className="font-bold italic ml-1">Ho̼s̼p̼i̼t̼l̼y̼</a>
-          </div>
+      <div className="hidden md:flex">
+        <div className="fixed top-0 w-full h-16 flex justify-between items-center px-10
+                        bg-white/70 backdrop-blur-md shadow-sm z-50">
 
-          <div>
-            <Link to="/" className="m-2">Home</Link>
-            <Link to="/hospitals" className="m-2">Hospitals</Link>
-            {Cookies.get("jwt_token") ?(<Link to="/appointment" className="m-2">BookAppointment</Link>):null
-            }
-            
-            <Link to="/contact" className="m-2">Contact</Link>
-            <Link to="/about" className="m-2">About</Link>
+          <Link to="/" className="font-bold italic text-lg tracking-wide">
+            Hospitly
+          </Link>
+
+          <div className="flex items-center space-x-6 font-medium text-gray-700">
+            <Link to="/" className="hover:text-blue-600 transition">Home</Link>
+            <Link to="/hospitals" className="hover:text-blue-600 transition">Hospitals</Link>
+
+            {Cookies.get("jwt_token") && (
+              <Link to="/appointment" className="hover:text-blue-600 transition">
+                Book Appointment
+              </Link>
+            )}
+
+            <Link to="/contact" className="hover:text-blue-600 transition">Contact</Link>
+            <Link to="/about" className="hover:text-blue-600 transition">About</Link>
 
             {Cookies.get("jwt_token") ? (
-              <Link to="/profile" className="m-2">👤</Link>
+              <Link to="/profile" className="text-xl">👤</Link>
             ) : (
-              <Link to="/signin" className="m-2 bg-blue-800 p-1 px-2 text-center rounded-xl text-white">Login</Link>
+              <Link
+                to="/signin"
+                className="bg-blue-600 text-white px-4 py-1.5 rounded-full hover:bg-blue-700 transition"
+              >
+                Login
+              </Link>
             )}
           </div>
         </div>

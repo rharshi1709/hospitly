@@ -12,7 +12,7 @@ function DetailedPage() {
   useEffect(() => {
     async function fetchDoctor() {
       try {
-        const response = await fetch(`http://localhost:1000/api/hospitals/${id}/doctor/${name}`)
+        const response = await fetch(`https://hospitlybackend.onrender.com/api/hospitals/${id}/doctor/${name}`)
         const data = await response.json()
         setDoctor(data)
       } catch (err) {

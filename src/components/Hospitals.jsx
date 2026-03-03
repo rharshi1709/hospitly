@@ -7,7 +7,7 @@ function Hospitals() {
 
   const fetchHospitals = async () => {
     try {
-      const response = await fetch('http://localhost:1000/api/hospitals')
+      const response = await fetch('https://hospitlybackend.onrender.com/api/hospitals')
       const data = await response.json()
       console.log('Fetched hospitals:', data.data)
       setHospitals(data.data)
